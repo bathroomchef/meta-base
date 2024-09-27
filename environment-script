@@ -1,0 +1,18 @@
+#!/bin/bash
+
+cd sources/poky
+if [ -d $1 ]; then
+	. ./oe-init-build-env $1
+else
+	. ./oe-init-build-env $1
+	sed -i 's/^#\(MACHINE ?= "beaglebone-yocto"\)/\1/' "./conf/local.conf"
+	sed -i 's/^\(MACHINE ??= "qemux86-64"\)/#\1/' "./conf/local.conf"
+	
+	echo "" >> ./conf/local.conf
+	echo "BB_NUMBER_THREADS = "5"" >> ./conf/local.conf
+	echo "PARALLEL_MAKE = "-j 5"" >> ./conf/local.conf
+	
+
+	echo "" >> ./conf/bblayers.conf
+	echo "BBLAYERS += \"\${BSPDIR}/sources/meta-hello-example\"" >> ./conf/bblayers.conf
+fi
