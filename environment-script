@@ -2,7 +2,7 @@
 
 cd sources/poky
 BUILD_DIR=$1
-echo $0
+
 if [ -d $BUILD_DIR ]; then
 	. ./oe-init-build-env $BUILD_DIR
 else
