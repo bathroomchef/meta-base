@@ -12,8 +12,8 @@ else
 		sed -i 's/^#\(MACHINE ?= "beaglebone-yocto"\)/\1/' "./conf/local.conf"
 		sed -i 's/^\(MACHINE ??= "qemux86-64"\)/#\1/' "./conf/local.conf"
 		echo "" >> ./conf/local.conf
-		echo "BB_NUMBER_THREADS = "5"" >> ./conf/local.conf
-		echo "PARALLEL_MAKE = "-j 5"" >> ./conf/local.conf		
+		echo "BB_NUMBER_THREADS = \"5\"" >> ./conf/local.conf
+		echo "PARALLEL_MAKE = \"-j 5\"" >> ./conf/local.conf		
 	fi
 	
 
