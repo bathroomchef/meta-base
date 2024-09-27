@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 cd sources/poky
 BUILD_DIR=$1
 
@@ -19,6 +20,6 @@ else
 	
 	if [ -f ./conf/bblayers.conf ]; then
 		echo "" >> ./conf/bblayers.conf
-		echo "BBLAYERS += \"\${BSPDIR}/sources/meta-hello-example\"" >> ./conf/bblayers.conf
+		echo "BBLAYERS += \"${SCRIPT_DIR}/sources/meta-hello-example\"" >> ./conf/bblayers.conf
 	fi
 fi
