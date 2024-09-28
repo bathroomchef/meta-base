@@ -1,0 +1,25 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+cd sources/poky
+BUILD_DIR=$1
+
+if [ -d $BUILD_DIR ]; then
+	. ./oe-init-build-env $BUILD_DIR
+else
+	. ./oe-init-build-env $BUILD_DIR
+	if [ -f ./conf/local.conf ]; then
+		sed -i 's/^#\(MACHINE ?= "beaglebone-yocto"\)/\1/' "./conf/local.conf"
+		sed -i 's/^\(MACHINE ??= "qemux86-64"\)/#\1/' "./conf/local.conf"
+		echo "" >> ./conf/local.conf
+		echo "BB_NUMBER_THREADS = \"5\"" >> ./conf/local.conf
+		echo "PARALLEL_MAKE = \"-j 5\"" >> ./conf/local.conf		
+	fi
+	
+
+	
+	if [ -f ./conf/bblayers.conf ]; then
+		echo "" >> ./conf/bblayers.conf
+		echo "BBLAYERS += \"${SCRIPT_DIR}/sources/meta-hello-example\"" >> ./conf/bblayers.conf
+	fi
+fi
