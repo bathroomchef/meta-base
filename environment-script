@@ -21,5 +21,6 @@ else
 	if [ -f ./conf/bblayers.conf ]; then
 		echo "" >> ./conf/bblayers.conf
 		echo "BBLAYERS += \"${SCRIPT_DIR}/sources/meta-hello-example\"" >> ./conf/bblayers.conf
+		echo "BBLAYERS += \"${SCRIPT_DIR}/sources/meta-server\"" >> ./conf/bblayers.conf
 	fi
 fi
